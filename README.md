@@ -1,35 +1,38 @@
-= Exception Logger for Rails3.2.x
+# WARNING
+Please do not use this project. It is customized for my personal use. Please use the original project from which this is forked.
+
+# Exception Logger for Rails 3.2
 
 This gem is evolved from the outdated exception_logger gem. I refined it with the mountable rails engine. That make it conveniet to
 mount it to any existing rails app.
 
-== Install
+## Install
 
 Inside your Gemfile:
 
-  gem "exception_logger", :require => "exception_logger"
+  gem "exception_logger", :github => '<use this repo>', :branch => 'rails-3.2'
 
 and then run:
 
   bundle install
 
-=== Gem Dependencies
+### Gem Dependencies
 
 Please check if all those requirements are satisfied on your environment.
 
-* will_paginate >= 3.0.3 # (used for pagination)
-* rails >= 3.2.1
+* will_paginate > 3.0.3
+* rails >= 3.2 and rails < 4.0
 
-=== Inside your ApplicationController:
+### Inside your ApplicationController:
 
   include ExceptionLogger::ExceptionLoggable # loades the module
   rescue_from Exception, :with => :log_exception_handler # tells rails to forward the 'Exception' (you can change the type) to the handler of the module
 
-=== Inside your config/routes.rb
+### Inside your config/routes.rb
 
   mount ExceptionLogger::Engine => "/exception_logger"
 
-=== Database Setup
+### Database Setup
 
 Use
 
@@ -45,7 +48,7 @@ Then
 
   rake db:migrate
 
-== Authentication
+## Authentication
 
 If you want, and believe me you want that, you can add the following lines to your environment to enable Authentication
 
@@ -70,11 +73,11 @@ and (if you use declarative_authorization) add this to your authorization_rules.
     has_permission_on :logged_exceptions, :to => :manage
     ...
 
-== Testing & Development
+## Testing & Development
 
 Not implemented yet.
 
-== Usage
+## Usage
 
 To localize the interface:
 
@@ -126,10 +129,10 @@ To add authentication, in config/application.rb or the specific environment file
     end
   end
 
-==License
+##License
 
 MIT License. See LICENSE for details.
 
-==Copyright
+##Copyright
 
 Copyright (c) 2012 Ryan Cheung and Shanghai Boohee Information Technology Co. Ltd.

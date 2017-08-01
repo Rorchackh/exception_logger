@@ -5,7 +5,7 @@ module ExceptionLogger
       def create_from_exception(controller, exception, data)
         message = exception.message.inspect
         message << "\n* Extra Data\n\n#{data}" unless data.blank?
-        e = create! \
+        create! \
           :exception_class => exception.class.name,
           :controller_name => controller.controller_path,
           :action_name     => controller.action_name,
