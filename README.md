@@ -36,24 +36,25 @@ Please check if all those requirements are satisfied on your environment.
 
 Use
 
-  rake exception_logger:install:migrations
+    rake exception_logger:install:migrations
 
 This will create a database migration
 
-  TIMESTAMP_create_exception_logger_logged_exceptions.exception_logger.rb
+    TIMESTAMP_create_exception_logger_logged_exceptions.exception_logger.rb
 
 inside db/migrations
 
 Then
 
-  rake db:migrate
+    rake db:migrate
 
 ## Authentication
 
-If you want, and believe me you want that, you can add the following lines to your environment to enable Authentication
+If you want, and believe me you want that, you can add the following lines to your environment to enable Authentication 
 
 Example uses the declarative_authorization gem
 
+```
 in config/environment/production.rb:
 
   config.after_initialize do
@@ -66,12 +67,15 @@ in config/environment/production.rb:
       self.application_name = "Your Application Name"
     end
   end
+```
 
 and (if you use declarative_authorization) add this to your authorization_rules.rb file:
 
+```
   role :admin do
     has_permission_on :logged_exceptions, :to => :manage
     ...
+```
 
 ## Testing & Development
 
@@ -81,6 +85,7 @@ Not implemented yet.
 
 To localize the interface:
 
+```
   en:
     exception_logger:
       logged_exceptions:
@@ -97,21 +102,25 @@ To localize the interface:
           last_30_days: Last 30 days
         show:
           title: Logged Exception
+```
 
 To log extra data, in your ApplicationController:
 
-  self.exception_data = Proc.new { |controller| "Extra exception infomation here!" }
+    self.exception_data = Proc.new { |controller| "Extra exception infomation here!" }
 
 or
 
+```
   self.exception_data = :extra_exception_data
 
   def extra_exception_data
     "Extra exception infomation here!"
   end
+```
 
 To add authentication, in config/application.rb or the specific environment file:
 
+```
   # set up authencation of exception_logger
   config.after_initialize do
     ExceptionLogger::LoggedExceptionsController.class_eval do
@@ -128,6 +137,8 @@ To add authentication, in config/application.rb or the specific environment file
       end
     end
   end
+  
+```
 
 ##License
 
